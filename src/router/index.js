@@ -1,7 +1,14 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
-
+import Content from '../views/Content.vue'
+import Publish from '../views/Publish.vue'
+import Login from '../views/Login.vue'
+import SignUp from '../views/SignUp.vue'
+const originalPush = VueRouter.prototype.push;
+VueRouter.prototype.push = function push(location) {
+  return originalPush.call(this, location).catch(err => err);
+}
 Vue.use(VueRouter)
 
   const routes = [
@@ -11,12 +18,25 @@ Vue.use(VueRouter)
     component: Home
   },
   {
-    path: '/about',
-    name: 'About',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
+    path: '/post/:id',
+    name: 'Content',
+    component: Content
+  },
+  {
+    path: '/publish',
+    name: 'Publish',
+    component: Publish,
+    meta: { requireAuth: true }
+  },
+  {
+    path: '/login',
+    name:"Login",
+    component: Login
+  },
+  {
+    path: '/signup',
+    name:"SignUp",
+    component: SignUp
   }
 ]
 
