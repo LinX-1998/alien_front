@@ -1,21 +1,18 @@
 <template>
   <div class="main">
     <div class="container">
-      <h2 class="form-title">注册</h2>
+      <h2 class="form-title"><span class="logo"></span>异星论坛</h2>
       <div class="form-group">
-        <label for="name">用户名</label>
         <input type="text" class="form-control" name="name" id="name" placeholder="用户名" v-model="username"/>
       </div>
       <div class="form-group">
-        <label for="pass">密码</label>
         <input type="password" class="form-control" name="pass" id="pass" placeholder="密码" v-model="password"/>
       </div>
       <div class="form-group">
-        <label for="re_pass">确认密码</label>
         <input type="password" class="form-control" name="re_pass" id="re_pass" placeholder="确认密码"  v-model="re_password"/>
       </div>
       <div class="form-btn">
-        <button type="button" class="btn btn-info" @click="submit">提交</button>
+        <button type="button" class="btn btn-info" @click="submit">注册</button>
       </div>
     </div>
   </div>
@@ -64,17 +61,26 @@ export default {
 </script>
 <style lang="less" scoped>
 .main {
-  background: #f8f8f8;
-  padding: 150px 0;
+  padding: 200px 0;
   .container {
-    width: 600px;
+    width: 500px;
     background: #fff;
     margin: 0 auto;
     max-width: 1200px;
     padding: 20px;
     .form-title {
-      margin-bottom: 33px;
+      margin-bottom: 25px;
       text-align: center;
+    }
+    .logo {
+      height: 40px;
+      background: url("../assets/images/logo.png") no-repeat;
+      background-size: 40px 40px;
+      background-position: left center;
+      padding-left: 35px;
+      line-height: 40px;
+      flex-grow: 0;
+      margin-right:10px;
     }
     .form-group {
       margin: 15px;
@@ -86,7 +92,7 @@ export default {
       }
       .form-control {
         display: block;
-        width: 100%;
+        width: 95%;
         height: 34px;
         padding: 6px 12px;
         font-size: 14px;

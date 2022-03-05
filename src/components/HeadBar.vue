@@ -1,6 +1,6 @@
 <template>
   <header class="header">
-      <span class="logo" @click="goIndex">Alien</span>
+      <span class="logo" @click="goIndex">异星论坛</span>
     <div class="search">
       <label class="s-logo"></label>
       <input type="text" class="s-input" placeholder="搜索" />
@@ -65,7 +65,7 @@ export default {
   top: 0;
   z-index: 1;
   .logo {
-    margin-left: 10px;
+    margin-left: 50px;
     height: 32px;
     background: url("../assets/images/logo.png") no-repeat;
     background-size: 32px 32px;
