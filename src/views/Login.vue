@@ -43,7 +43,7 @@ export default {
 				if (res.code == 1000) {
           localStorage.setItem("loginResult", JSON.stringify(res.data));
           this.$store.commit("login", res.data);
-          this.loginSuccess(res.msg)
+          this.loginSuccess('登录成功，您可以登录创作啦～')
           this.$router.push({path: this.redirect || '/' })
 				} else {
           this.loginFailed('参数错误，请重新检查输入～')
@@ -61,7 +61,7 @@ export default {
     },
     loginFailed(msg) {
       this.$notify.error({
-        title: '登陆失败',
+        title: '登录失败',
         message: msg
       });
     }

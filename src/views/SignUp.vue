@@ -6,7 +6,7 @@
         <input type="text" class="form-control" name="name" id="name" placeholder="用户名" v-model="username"/>
       </div>
       <div class="form-group">
-        <input type="password" class="form-control" name="pass" id="pass" placeholder="密码" v-model="password"/>
+        <input type="password" class="form-control" name="pass" id="pass" placeholder="密码-最少6位" v-model="password"/>
       </div>
       <div class="form-group">
         <input type="password" class="form-control" name="re_pass" id="re_pass" placeholder="确认密码"  v-model="re_password"/>
