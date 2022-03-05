@@ -5,8 +5,8 @@ Vue.use(Vuex)
 
 const defaultLoginResult = {
   token:null,
-  user_id:null,
-  user_name:null,
+  userID:null,
+  username:null,
 }
 
 export default new Vuex.Store({
@@ -17,7 +17,6 @@ export default new Vuex.Store({
   mutations: {
     init(state){
       let loginResult = JSON.parse(localStorage.getItem("loginResult"));
-      console.log(localStorage.getItem("loginResult"));
       if (loginResult !=null){
         state.loginResult = loginResult;
       }
@@ -33,9 +32,9 @@ export default new Vuex.Store({
   actions: {
   },
   getters: {
-    isLogin:state=>state.loginResult.user_id !== null,
-    userID:state=>state.loginResult.user_id,
-    username:state=>state.loginResult.user_name,
-    accessToken:state=>state.loginResult.token,
+    isLogin:state=>state.loginResult.userID !== null,
+    userID:state=>state.loginResult.userID,
+    username:state=>state.loginResult.username,
+    token:state=>state.loginResult.token,
   }
 })

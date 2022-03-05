@@ -145,7 +145,7 @@ export default {
     .user {
       width: auto;
       height: 24px;
-      background: url("../assets/images/avatar.png") no-repeat;
+      background: url("../assets/images/catHead.png") no-repeat;
       background-size: 24px 24px;
       background-position: left center;
       padding-left: 28px;

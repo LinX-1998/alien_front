@@ -3,14 +3,17 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 import axios from './service/api'
+import ElementUI from 'element-ui';
+import 'element-ui/lib/theme-chalk/index.css';
+
+Vue.use(ElementUI)
 
 Vue.prototype.$axios = axios;
 Vue.config.productionTip = false
 
 
 router.beforeEach((to, from, next) => {
-  console.log(to);
-  console.log(from);
+  console.log("to and from:", to, from);
   if (to.meta.requireAuth) { // 判断该路由是否需要登录权限
     if (localStorage.getItem("loginResult")) { //判断本地是否存在access_token
       next();

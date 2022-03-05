@@ -40,18 +40,31 @@ export default {
 					password: this.password
 				})
 			}).then((res)=>{
-				console.log(res.data)
 				if (res.code == 1000) {
           localStorage.setItem("loginResult", JSON.stringify(res.data));
           this.$store.commit("login", res.data);
+          this.loginSuccess(res.msg)
           this.$router.push({path: this.redirect || '/' })
 				} else {
-					console.log(res.msg)
+          this.loginFailed('参数错误，请重新检查输入～')
 				}
 			}).catch((error)=>{
 				console.log(error)
 			})
-		}
+		},
+    loginSuccess(msg) {
+      this.$notify({
+        type:'success',
+        title: '登录成功',
+        message: msg
+      });
+    },
+    loginFailed(msg) {
+      this.$notify.error({
+        title: '登陆失败',
+        message: msg
+      });
+    }
 	}
 };
 </script>

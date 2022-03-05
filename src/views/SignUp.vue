@@ -47,15 +47,28 @@ export default {
 			}).then((res)=>{
 				console.log(res.data);
 				if (res.code == 1000) {
-          console.log('signup success');
+          this.signUpSuccess('注册成功，您可以登录创作啦～')
           this.$router.push({ name: "Login" });
 				}else{
-          console.log(res.msg);
+          this.signUpFailed('参数错误，请重新检查输入～')
         }
 			}).catch((error)=>{
-				console.log(error)
+				console.log("这里出错了", error)
 			})
-		}
+		},
+    signUpSuccess(msg) {
+      this.$notify({
+        type:'success',
+        title: '注册成功',
+        message: msg
+      });
+    },
+    signUpFailed(msg) {
+      this.$notify.error({
+        title: '注册失败',
+        message: msg
+      });
+    }
 	}
 };
 </script>
