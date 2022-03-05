@@ -7,12 +7,6 @@ import axios from './service/api'
 Vue.prototype.$axios = axios;
 Vue.config.productionTip = false
 
-new Vue({
-  router,
-  store,
-  render: h => h(App)
-}).$mount('#app')
-
 
 router.beforeEach((to, from, next) => {
   console.log(to);
@@ -44,3 +38,9 @@ router.beforeEach((to, from, next) => {
     }
   }
 })
+
+new Vue({
+  router,
+  store,
+  render: h => h(App)
+}).$mount('#app')
