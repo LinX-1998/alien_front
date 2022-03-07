@@ -2,7 +2,6 @@
 <template>
   <div class="content">
     <div class="left">
-      <div class="post-name">我好想写点什么</div>
       <div class="post-type">
         <input type="text" class="post-type-value" placeholder="选择一个频道" v-model="selectCommunity.name" @click="showCommunity()"/>
         <ul class="post-type-options" v-show="showCommunityList">
@@ -30,7 +29,7 @@
             <textarea class="post-title" id cols="30" rows="10" v-model="title" placeholder="标题"></textarea>
             <span class="textarea-num">0/300</span>
           </div>
-          <!---此处放置富文本--->
+          <!--此处放置富文本-->
           <div class="post-text-con">
             <textarea
               class="post-content-t"
@@ -44,7 +43,7 @@
         </div>
         <div class="post-footer">
           <div class="btns">
-            <button class="btn">取消</button>
+            <button class="btn" @click="reload()">取消</button>
             <button class="btn" @click="submit()">发表</button>
           </div>
         </div>
@@ -56,9 +55,12 @@
           <i class="p-r-icon"></i>发帖规范
         </h5>
         <ul class="p-r-content">
-          <li class="p-r-item">1.网络不是法外之地</li>
-          <li class="p-r-item">2.网络不是法外之地</li>
-          <li class="p-r-item">3.网络不是法外之地</li>
+          <li class="p-r-item">重要的事情说三遍 ==> ⚠️</li>
+          <li class="p-r-item">=== 网络不是法外之地 === </li>
+          <li class="p-r-item">=== 网络不是法外之地 ===</li>
+          <li class="p-r-item">=== 网络不是法外之地 ===</li>
+          <li class="p-r-item">天网恢恢疏而不漏</li>
+          <li class="p-r-item">自觉遵守规章制度</li>
         </ul>
       </div>
     </div>
@@ -89,16 +91,27 @@ export default {
         })
       })
         .then(response => {
-          console.log(response.data);
           if (response.code == 1000) {
             this.$router.push({ path: this.redirect || "/" });
+            this.$notify({
+              type:'success',
+              title: '成功',
+              message: '文章发表成功'
+            });
           } else {
-            console.log(response.msg);
+            this.$notify.error({
+              title: '失败',
+              message: response.msg
+            });
           }
         })
         .catch(error => {
           console.log(error);
         });
+    },
+    reload() {
+      this.title=""
+      this.content=""
     },
     getCommunityList() {
       this.$axios({
@@ -106,11 +119,22 @@ export default {
         url: "/community"
       })
         .then(response => {
-          console.log(response.data);
           if (response.code == 1000) {
             this.communityList = response.data;
+          } else if(response.code == 1006){
+            this.$store.commit("logout");
+            this.$router.push({ name: "Login" });
+            this.$notify({
+              type:'warn',
+              title: '无查看权限',
+              message: '请登陆'
+            });
           } else {
-            console.log(response.msg);
+            this.$notify({
+              type:'warn',
+              title: '不该到这',
+              message: response.msg
+            });
           }
         })
         .catch(error => {
@@ -123,7 +147,6 @@ export default {
     selected(index) {
       this.selectCommunity = this.communityList[index];
       this.showCommunityList = false;
-      console.log(this.selectCommunity)
     }
   },
   mounted: function() {
@@ -299,7 +322,7 @@ export default {
         }
         .post-text-con {
           width: 100%;
-          height: 200px;
+          height: 300px;
           border: 1px solid #edeff1;
           margin-top: 20px;
           .post-content-t {
@@ -390,7 +413,7 @@ export default {
   .right {
     flex-grow: 0;
     width: 312px;
-    margin-top: 62px;
+    margin-top: 66px;
     .post-rank {
       background-color: #ffffff;
       border-radius: 4px;
@@ -403,7 +426,7 @@ export default {
         .p-r-icon {
           width: 40px;
           height: 40px;
-          background: url("../assets/images/avatar.png") no-repeat;
+          background: url("../assets/images/dogAdmin.png") no-repeat;
           background-size: cover;
           margin-right: 10px;
         }

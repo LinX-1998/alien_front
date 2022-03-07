@@ -13,9 +13,9 @@ Vue.config.productionTip = false
 
 
 router.beforeEach((to, from, next) => {
-  console.log("to and from:", to, from);
   if (to.meta.requireAuth) { // 判断该路由是否需要登录权限
     if (localStorage.getItem("loginResult")) { //判断本地是否存在access_token
+      console.log("Yes")
       next();
     } else {
       if (to.path === '/login') {
