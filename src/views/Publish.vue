@@ -7,10 +7,10 @@
         <ul class="post-type-options" v-show="showCommunityList">
           <li class="post-type-cell"
             v-for="(community, index) in communityList"
-            :key="community.id"
+            :key="community.community_id"
             @click="selected(index)"
           >
-            {{community.name}}
+            {{community.community_name}}
           </li>
         </ul>
         <i class="p-icon"></i>

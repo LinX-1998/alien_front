@@ -47,6 +47,7 @@ export default {
     },
     goLogout(){
       this.$store.commit("logout");
+      this.$router.push({ path: this.redirect || "/" });
     }
   }
 };
