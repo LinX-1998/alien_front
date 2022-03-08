@@ -331,7 +331,7 @@ export default {
             overflow: hidden;
             display: block;
             width: 100%;
-            height: 200px;
+            height: 300px;
             padding: 12px 8px;
             outline: none;
             border: 1px solid #edeff1;
