@@ -3,7 +3,7 @@
   <div class="content">
     <div class="left">
       <div class="post-type">
-        <input type="text" class="post-type-value" placeholder="选择一个频道" v-model="selectCommunity.name" @click="showCommunity()"/>
+        <input type="text" class="post-type-value" placeholder="选择一个频道" v-model="selectCommunity.community_name" @click="showCommunity()"/>
         <ul class="post-type-options" v-show="showCommunityList">
           <li class="post-type-cell"
             v-for="(community, index) in communityList"
@@ -87,7 +87,7 @@ export default {
         data: JSON.stringify({
           title: this.title,
           content: this.content,
-          community_id: this.selectCommunity.id
+          community_id: this.selectCommunity.community_id
         })
       })
         .then(response => {
@@ -112,6 +112,7 @@ export default {
     reload() {
       this.title=""
       this.content=""
+      this.selectCommunity={}
     },
     getCommunityList() {
       this.$axios({
