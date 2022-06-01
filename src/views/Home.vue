@@ -164,9 +164,16 @@ export default {
       })
         .then(response => {
           if (response.code == 1000) {
-            console.log("vote success");
+            this.$notify({
+              type:'success',
+              title: '投票成功',
+              message: response.msg
+            });
           } else {
-            console.log(response.msg);
+            this.$notify.error({
+              title: '登录失败',
+              message: response.msg
+            });
           }
         })
         .catch(error => {
